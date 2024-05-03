@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config">
+
+  <Appenders>
+    <Console name="stdout" target="SYSTEM_OUT">
+      <PatternLayout pattern="%5level [%t] - %msg%n"/>
+    </Console>
+  </Appenders>
+
+  <Loggers>
+    <Logger name="board" level="trace"/>
+    <Logger name="member" level="trace"/>
+    <Root level="debug" > <!-- error 발생 시에만 작동시키고 싶으면 level 을 error 로 변경 -->
+      <AppenderRef ref="stdout"/>
+    </Root>
+  </Loggers>
+</Configuration>

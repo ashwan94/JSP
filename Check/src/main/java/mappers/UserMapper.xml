@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="user.UserMapper">
+	<select id="getUserList" resultType="user.UserVO">
+		select
+			id
+			, name
+			, email
+			, create_date
+		from
+			member
+	</select>
+	<select id="getUser" parameterType="string" resultType="user.UserVO">
+		select
+			id
+			, name
+			, password
+			, email
+		from
+			member
+		where
+			id = #{id}
+	</select>
+	<select id="currentPassword" parameterType="user.UserVO">
+		select
+			id
+			, name
+			, email
+		from
+			member
+		where
+			id = #{id}
+			and password = #{password}
+	</select>
+	<insert id="insertUser" parameterType="user.UserVO">
+		insert into member
+			(id, name, password, email)
+		values
+			(#{id}, #{name}, #{password}, #{email})
+	</insert>
+	<update id="updateUser" parameterType="user.UserVO">
+		update
+			member
+		set
+			name = #{namme}
+			, password = #{password}
+			, eamil = #{email}
+		where
+			id = #{id}
+	</update>
+	<update id="changePassword" parameterType="user.UserVO">
+		update
+			member
+		set
+			password = #{password}
+			, modify_date = sysdate
+		where
+			id = #{id}
+	</update>
+	<delete id="deleteUser" parameterType="string">
+		delete from
+			member
+		where
+			id = #{id}
+	</delete>
+</mapper>
